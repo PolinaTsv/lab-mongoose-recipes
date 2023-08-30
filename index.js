@@ -43,7 +43,12 @@ mongoose.set("strictQuery", false);
       { $set: { duration: 100 } },
       { returnDocument: "after" } // This option returns the updated document
     );
-    console.log(updatedRecipe);
+
+    const removedRecipe = await Recipe.findOneAndDelete(
+      { title: "Carrot Cake" },
+    );
+
+    console.log(removedRecipe);
   } catch (error) {
     console.error("Error:", error);
   }
